@@ -114,7 +114,7 @@ void Gaussian_Blur() {
 
 }
 
-//change this for part c
+//change this for part c using x86-64 SSE/SSE2/SSE4/AVX/AVX2
 void Sobel() {
 
 	int row, col, rowOffset, colOffset;
