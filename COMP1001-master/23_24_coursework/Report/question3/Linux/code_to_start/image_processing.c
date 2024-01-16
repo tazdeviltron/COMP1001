@@ -6,6 +6,8 @@
 */
 
 //In Linux compile using : gcc image_processing.c   -o p -O3  -lm  
+//part a 
+//write a linux bash script
 
 #include <stdio.h>
 #include <string.h>
@@ -64,7 +66,7 @@ const signed char GyMask[3][3] = {
 
 char header[100];
 
-
+//change this. 
 int main( ){
 
 	

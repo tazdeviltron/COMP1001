@@ -25,7 +25,7 @@ void write_image2(const char* filename, unsigned char* output_image);
 void openfile(const char* filename, FILE** finput);
 int getint(FILE* fp);
 
-//CRITICAL POINT: images' paths - You need to change these paths
+//CRITICAL POINT: images' paths - You need to change these paths // for b
 #define IN "C:\\Users\\vboxuser\\source\\repos\\image_processing\\image_processing\\input_images\\a1.pgm"
 #define OUT "C:\\Users\\vboxuser\\source\\repos\\image_processing\\image_processing\\output_images\\blurred.pgm"
 #define OUT2 "C:\\Users\\vboxuser\\source\\repos\\image_processing\\image_processing\\output_images\\edge_detection.pgm"
@@ -114,7 +114,7 @@ void Gaussian_Blur() {
 
 }
 
-
+//change this for part c
 void Sobel() {
 
 	int row, col, rowOffset, colOffset;
