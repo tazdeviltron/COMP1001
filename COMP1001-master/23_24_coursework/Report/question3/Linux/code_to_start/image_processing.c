@@ -67,7 +67,7 @@ const signed char GyMask[3][3] = {
 char header[100];
 
 //change this. 
-int main( ){
+int main(int argc, char* argv[]){
 
 	
  read_image(IN);//read image from disc

@@ -1,5 +1,4 @@
 #! /bin/bash
-echo "Hello World"
 
 LINE=1
 
