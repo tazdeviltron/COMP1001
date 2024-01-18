@@ -65,7 +65,7 @@ int getint(FILE* fp);
 #define OUT2 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\output_images\\edge_detection.pgm"
 
 //IMAGE DIMENSIONS
-#define M 512  //cols
+#define M 512 //cols
 #define N 512  //rows
 
 
@@ -98,9 +98,9 @@ const signed char GyMask[3][3] = {
 char header[100];
 errno_t err;
 
-int main() {
+int main() {    	
 	int i = 0;
-	while (i < 31) {
+	while (i <= 31) {
 		i++;
 		switch (i) {
 		case 1:
@@ -181,6 +181,7 @@ int main() {
 		Sobel(); //apply edge detection
 		write_image2(OUT, filt); //store output image to the disc
 		write_image2(OUT2, gradient); //store output image to the disc
+		break;
 	}
 
 	
