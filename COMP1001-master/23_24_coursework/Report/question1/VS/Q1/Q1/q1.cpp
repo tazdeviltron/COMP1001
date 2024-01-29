@@ -30,6 +30,7 @@ void routine1(float alpha, float beta);
 void routine2(float alpha, float beta);
 void routine1_vec(float alpha, float beta);
 void routine2_vec(float alpha, float beta);
+//extern unsigned short int equal(float a, float b);
 
 __declspec(align(64)) float  y[M], z[M] ;
 __declspec(align(64)) float A[N][N], x[N], w[N];
@@ -170,5 +171,35 @@ void routine2_vec(float alpha, float beta) {
            
 }
 
+//unsigned short int Compare_Add1(float alpha, float beta) {
+
+
+ //   for (int i = 0; i < M; i++) {
+//        y[i] = alpha * y[i] + beta * z[i];
+//    }
+
+//    for (int i = 0; i < M; i++)
+//        if (equal(y[i], y[i]) == 1) {
+ //           printf("\n j=%d\n", i);
+//            return 1;
+//        }
+
+//    return 0;
+//}
+//unsigned short int Compare_Add2(float alpha, float beta) {
+
+//    for (int i = 0; i < N; i++)
+//        for (int j = 0; j < N; j++)
+ //           w[i] = w[i] - beta + alpha * A[i][j] * x[j];
+
+
+//    for (int j = 0; j < N; j++)
+//        if (equal(w[j], w[j]) == 1) {
+//            printf("\n j=%d\n", j);
+//            return 1;
+//        }
+
+//    return 0;
+//}
 
 

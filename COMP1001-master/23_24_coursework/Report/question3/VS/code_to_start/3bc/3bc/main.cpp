@@ -28,51 +28,20 @@ void write_image2(const char* filename, unsigned char* output_image);
 void openfile(const char* filename, FILE** finput);
 int getint(FILE* fp);
 
-//CRITICAL POINT: images' paths - you need to change this path
-#define IN "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a1.pgm"
-#define IN0 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a0.pgm"
-#define IN2 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a2.pgm"
-#define IN3 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a3.pgm"
-#define IN4 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a4.pgm"
-#define IN5 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a5.pgm"
-#define IN6 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a6.pgm"
-#define IN7 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a7.pgm"
-#define IN8 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a8.pgm"
-#define IN9 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a9.pgm"
-#define IN10 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a10.pgm"
-#define IN11 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a11.pgm"
-#define IN12 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a12.pgm"
-#define IN13 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a13.pgm"
-#define IN14 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a14.pgm"
-#define IN15 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a15.pgm"
-#define IN16 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a16.pgm"
-#define IN17 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a17.pgm"
-#define IN18 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a18.pgm"
-#define IN19 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a19.pgm"
-#define IN20 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a20.pgm"
-#define IN21 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a21.pgm"
-#define IN22 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a22.pgm"
-#define IN23 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a23.pgm"
-#define IN24 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a24.pgm"
-#define IN25 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a25.pgm"
-#define IN26 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a26.pgm"
-#define IN27 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a27.pgm"
-#define IN28 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a28.pgm"
-#define IN29 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a29.pgm"
-#define IN30 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a30.pgm"
-
+string IN;
+//CRITICAL POINT: images' paths - you need to change this path,create a string with this, create loop that adds 1 and .pgm at end
 #define OUT "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\output_images\\blurred.pgm"
 #define OUT2 "C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\output_images\\edge_detection.pgm"
 
 //IMAGE DIMENSIONS
-#define M 512 //cols
-#define N 512  //rows
+unsigned int M; //cols
+unsigned int N;  //rows
 
 
 //CRITICAL POINT:these arrays are defined statically. Consider creating these arrays dynamically instead.
-unsigned char frame1[N * M];//input image
-unsigned char filt[N * M];//output filtered image
-unsigned char gradient[N * M];//output image
+unsigned char frame1[] = { N * M };//input image N*M
+unsigned char filt[] = { N * M };//output filtered image N*M
+unsigned char gradient[] = { N * M };//output image N*M
 
 
 const signed char Mask[5][5] = {//2d gaussian mask with integers
@@ -99,89 +68,50 @@ char header[100];
 errno_t err;
 
 int main() {    	
-	int i = 0;
-	while (i <= 31) {
-		i++;
-		switch (i) {
-		case 1:
-			read_image(IN);
-			
-		case 2:
-			read_image(IN0);
-			
-		case 3:
-			read_image(IN2);
-			
-		case 4:
-			read_image(IN3);
-			
-		case 5:
-			read_image(IN4);
-			
-		case 6:
-			read_image(IN5);
-			
-		case 7:
-			read_image(IN6);
-			
-		case 8:
-			read_image(IN7);
-			
-		case 9:
-			read_image(IN8);
-			
-		case 10:
-			read_image(IN9);
-			
-		case 11:
-			read_image(IN10);
-			
-		case 12:
-			read_image(IN11);
-		case 13:
-			read_image(IN12);
-		case 14:
-			read_image(IN13);
-		case 15:
-			read_image(IN14);
-		case 16:
-			read_image(IN15);
-		case 17:
-			read_image(IN16);
-		case 18:
-			read_image(IN17);
-		case 19:
-			read_image(IN18);
-		case 20:
-			read_image(IN19);
-		case 21:
-			read_image(IN20);
-		case 22:
-			read_image(IN21);
-		case 23:
-			read_image(IN22);
-		case 24:
-			read_image(IN23);
-		case 25:
-			read_image(IN24);
-		case 26:
-			read_image(IN25);
-		case 27:
-			read_image(IN26);
-		case 28:
-			read_image(IN27);
-		case 29:
-			read_image(IN28);
-		case 30:
-			read_image(IN29);
-		case 31:
-			read_image(IN30);
-		}
+	const char* image_filenames[] = {
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a0.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a1.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a2.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a3.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a4.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a5.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a6.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a7.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a8.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a9.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a10.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a11.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a12.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a13.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a14.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a15.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a16.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a17.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a18.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a19.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a20.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a21.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a22.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a23.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a24.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a25.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a26.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a27.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a28.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a29.pmg",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a30.pmg",
+	};
+	for (const char* filename : image_filenames) {
+		// Initialize the IN string with the current filename
+		std::string IN(filename);
+
+		read_image(IN.c_str());
 		Gaussian_Blur(); //blur the image (reduce noise)
 		Sobel(); //apply edge detection
 		write_image2(OUT, filt); //store output image to the disc
 		write_image2(OUT2, gradient); //store output image to the disc
-		break;
+		//detroy the array 
+
 	}
 
 	
@@ -263,10 +193,12 @@ void read_image(const char* filename)
 	int c;
 	FILE* finput;
 	int i, j, temp;
-
+	
 	printf("\nReading %s image from disk ...", filename);
 	finput = NULL;
 	openfile(filename, &finput);
+	//develop a route that dynaticlly creates the arrays
+	//based on N and M values, there are 3 arrays
 
 	if ((header[0] == 'P') && (header[1] == '5')) { //if P5 image
 
@@ -276,7 +208,7 @@ void read_image(const char* filename)
 				//if (fscanf_s(finput, "%d", &temp,20) == EOF)
 				//	exit(EXIT_FAILURE);
 				temp = getc(finput);
-
+				//3 arra
 				frame1[M * j + i] = (unsigned char)temp;
 			}
 		}
@@ -355,8 +287,8 @@ void openfile(const char* filename, FILE** finput)
 
 
 	//CRITICAL POINT: AT THIS POINT YOU CAN ASSIGN x0,y0 to M,N 
-	x0 = M;
-	y0 = N;
+	M = x0;
+	N = y0;
 	 printf("\n Image dimensions are M=%d,N=%d",M,N);
 
 
