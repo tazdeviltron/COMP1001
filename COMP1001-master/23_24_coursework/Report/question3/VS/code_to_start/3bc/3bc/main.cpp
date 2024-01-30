@@ -16,6 +16,8 @@
 #include <immintrin.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
 using namespace std;
 
 //function declarations
@@ -39,9 +41,9 @@ unsigned int N;  //rows
 
 
 //CRITICAL POINT:these arrays are defined statically. Consider creating these arrays dynamically instead.
-unsigned char frame1[] = { N * M };//input image N*M
-unsigned char filt[] = { N * M };//output filtered image N*M
-unsigned char gradient[] = { N * M };//output image N*M
+unsigned char *frame1= nullptr;//input image N*M
+unsigned char *filt = nullptr;//output filtered image N*M
+unsigned char *gradient = nullptr;//output image N*M
 
 
 const signed char Mask[5][5] = {//2d gaussian mask with integers
@@ -67,51 +69,54 @@ const signed char GyMask[3][3] = {
 char header[100];
 errno_t err;
 
-int main() {    	
-	const char* image_filenames[] = {
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a0.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a1.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a2.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a3.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a4.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a5.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a6.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a7.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a8.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a9.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a10.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a11.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a12.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a13.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a14.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a15.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a16.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a17.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a18.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a19.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a20.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a21.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a22.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a23.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a24.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a25.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a26.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a27.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a28.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a29.pmg",
-		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001 - master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a30.pmg",
+int main(int argc,char*argv[]) {
+	const char* filenames[] = {
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a0.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a1.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a2.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a3.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a4.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a5.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a6.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a7.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a8.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a9.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a10.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a11.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a12.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a13.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a14.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a15.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a16.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a17.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a18.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a19.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a20.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a21.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a22.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a23.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a24.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a25.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a26.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a27.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a28.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a29.pgm",
+		"C:\\Users\\natas\\source\\repos\\COMP1001report\\COMP1001-master\\23_24_coursework\\Report\\question3\\VS\\code_to_start\\3bc\\3bc\\input_images\\a30.pgm",
 	};
-	for (const char* filename : image_filenames) {
+
+	for (const char* filename : filenames) {
 		// Initialize the IN string with the current filename
 		std::string IN(filename);
-
 		read_image(IN.c_str());
 		Gaussian_Blur(); //blur the image (reduce noise)
 		Sobel(); //apply edge detection
 		write_image2(OUT, filt); //store output image to the disc
 		write_image2(OUT2, gradient); //store output image to the disc
 		//detroy the array 
-
+		delete[] frame1;
+		delete[] filt;
+		delete[] gradient;
+	
 	}
 
 	
@@ -189,17 +194,18 @@ void Sobel() {
 
 void read_image(const char* filename)
 {
-
 	int c;
 	FILE* finput;
-	int i, j, temp;
-	
+	int i, j,temp;
 	printf("\nReading %s image from disk ...", filename);
 	finput = NULL;
 	openfile(filename, &finput);
 	//develop a route that dynaticlly creates the arrays
 	//based on N and M values, there are 3 arrays
-
+	frame1 = new unsigned char[M * N];
+	filt = new unsigned char[M * N];
+	gradient = new unsigned char[M * N];
+	
 	if ((header[0] == 'P') && (header[1] == '5')) { //if P5 image
 
 		for (j = 0; j < N; j++) {
@@ -231,7 +237,7 @@ void read_image(const char* filename)
 
 	fclose(finput);
 	printf("\nimage successfully read from disc\n");
-
+	
 }
 
 
@@ -263,6 +269,7 @@ void write_image2(const char* filename, unsigned char* output_image)
 		if (M % 32 != 0) fprintf(foutput, "\n");
 	}
 	fclose(foutput);
+	
 
 
 }
@@ -272,13 +279,13 @@ void write_image2(const char* filename, unsigned char* output_image)
 
 void openfile(const char* filename, FILE** finput)
 {
-	int x0, y0, x , aa;
+	int x0, y0, x, aa;
 
 	if (( err = fopen_s(finput,filename, "rb")) != NULL) {
 		fprintf(stderr, "Unable to open file %s for reading\n", filename);
 		exit(-1);
 	}
-
+	
 	aa = fscanf_s(*finput, "%s", header, 20);
 
 	x0 = getint(*finput);//this is M

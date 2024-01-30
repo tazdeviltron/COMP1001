@@ -52,15 +52,6 @@ int main() {
     run_time = omp_get_wtime() - start_time; //end timer
     printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS1) / ((double)run_time / TIMES1));
 
-    printf("\nRoutine2:");
-    start_time = omp_get_wtime(); //start timer
-
-    for (t = 0; t < TIMES2; t++)
-        routine2(alpha, beta);
-
-    run_time = omp_get_wtime() - start_time; //end timer
-    printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS2) / ((double)run_time / TIMES2));
-
     printf("\nRoutine1_vec:");
     start_time = omp_get_wtime(); //start timer
 
@@ -69,6 +60,16 @@ int main() {
 
     run_time = omp_get_wtime() - start_time; //end timer
     printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS1) / ((double)run_time / TIMES1));
+    
+
+    printf("\nRoutine2:");
+    start_time = omp_get_wtime(); //start timer
+
+    for (t = 0; t < TIMES2; t++)
+        routine2(alpha, beta);
+
+    run_time = omp_get_wtime() - start_time; //end timer
+    printf("\n Time elapsed is %f secs \n %e FLOPs achieved\n", run_time, (double)(ARITHMETIC_OPERATIONS2) / ((double)run_time / TIMES2));
 
     printf("\nRoutine2_vec:");
     start_time = omp_get_wtime(); //start timer
@@ -138,7 +139,7 @@ void routine1_vec(float alpha, float beta) {
         unsigned int i;
 
 
-        for (i = 0; i < M; i++)
+        for (i = 0; i < M; i += 4) {
             num1 = _mm_loadu_ps(&y[i]);//loads 4
             a = _mm_loadu_ps(&alpha);
             b = _mm_loadu_ps(&beta);
@@ -147,6 +148,7 @@ void routine1_vec(float alpha, float beta) {
             multi2 = _mm_mul_ps(num2, b);
             num3 = _mm_add_ps(multi1, multi2);//adding together
             _mm_storeu_ps(&y[i], num3); //stored here
+        }
 }
 
 void routine2_vec(float alpha, float beta) {
@@ -156,8 +158,8 @@ void routine2_vec(float alpha, float beta) {
     unsigned int i, j;
     //times first, then add, then div
 
-    for (i = 0; i < N; i++)
-        for (j = 0; j < N; j++)
+    for (i = 0; i < N; i += 4) {
+        for (j = 0; j < N; j += 4) {
             num1 = _mm_loadu_ps(&w[i]);//load
             alp = _mm_loadu_ps(&alpha);//load
             b = _mm_loadu_ps(&beta);//load
@@ -168,38 +170,16 @@ void routine2_vec(float alpha, float beta) {
             add = _mm_add_ps(multi2, b);//adding beta
             div = _mm_sub_ps(num1, add); //sub the rest
             _mm_storeu_ps(&w[i], div); //store here
-           
+        }
+    }
 }
 
 //unsigned short int Compare_Add1(float alpha, float beta) {
 
-
- //   for (int i = 0; i < M; i++) {
-//        y[i] = alpha * y[i] + beta * z[i];
-//    }
-
-//    for (int i = 0; i < M; i++)
-//        if (equal(y[i], y[i]) == 1) {
- //           printf("\n j=%d\n", i);
-//            return 1;
-//        }
-
-//    return 0;
 //}
+
 //unsigned short int Compare_Add2(float alpha, float beta) {
 
-//    for (int i = 0; i < N; i++)
-//        for (int j = 0; j < N; j++)
- //           w[i] = w[i] - beta + alpha * A[i][j] * x[j];
-
-
-//    for (int j = 0; j < N; j++)
-//        if (equal(w[j], w[j]) == 1) {
-//            printf("\n j=%d\n", j);
-//            return 1;
-//        }
-
-//    return 0;
 //}
 
 

@@ -14,4 +14,4 @@ while read -r CURRENT_LINE
 	do
 		echo "$LINE: $CURRENT_LINE"
     ((LINE++))
-done < "a0.pgm"
+done < "a15.pgm"
