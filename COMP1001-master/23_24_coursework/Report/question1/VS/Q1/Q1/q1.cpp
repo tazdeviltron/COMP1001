@@ -139,7 +139,7 @@ void routine1_vec(float alpha, float beta) {
         unsigned int i;
 
 
-        for (i = 0; i < M; i += 4) {
+        for (i = 0; i < M; i ++) {
             num1 = _mm_loadu_ps(&y[i]);//loads 4
             a = _mm_loadu_ps(&alpha);
             b = _mm_loadu_ps(&beta);
@@ -158,8 +158,8 @@ void routine2_vec(float alpha, float beta) {
     unsigned int i, j;
     //times first, then add, then div
 
-    for (i = 0; i < N; i += 4) {
-        for (j = 0; j < N; j += 4) {
+    for (i = 0; i < N; i ++) {
+        for (j = 0; j < N; j ++ ) {
             num1 = _mm_loadu_ps(&w[i]);//load
             alp = _mm_loadu_ps(&alpha);//load
             b = _mm_loadu_ps(&beta);//load
